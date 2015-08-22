@@ -44,7 +44,6 @@ exports.doReg = function(req, res, next) {
       name: req.body.username
     })
     .exec(function(err, user) {
-      console.log(user)
       if (err) return next(err);
       if (user.length != 0) {
         req.flash('error', 'User is already registered');
@@ -110,12 +109,9 @@ exports.doLogin = function(req, res, next) {
 
 exports.post = function(req, res, next) {
   var currentUser = req.session.user;
-  var timeInServer = new Date()
-  if(timeInServer.getTimezoneOffset == 0){
-    var time = new Date(timeInServer + (8*60*1000)); // convert to hong kong time
-  } else {
-    var time = new Date();
-  }
+  var timeInServer = new Date();
+  var time = new Date(timeInServer.getTime() + (8*60*1000*60)); // convert to hong kong time
+ 
   new Post({
     user: currentUser,
     post: req.body.post,
@@ -125,7 +121,7 @@ exports.post = function(req, res, next) {
       req.flash('error', err);
       return res.redirect('/');
     }
-    req.flash('success', 'Post successfully');
+    req.flash('success', 'Posted successfully');
     return res.redirect('/');
   })
 }

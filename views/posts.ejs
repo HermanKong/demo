@@ -5,7 +5,7 @@ reversePosts.forEach(function(post, index) {
 <%} %>
   <div class="span4">
     <h2> <span style="color: #0074CC"><%= post.user %></span> posted</h2>
-    <p><small><%= post.time %></small></p>
+    <p><small><%= post.time.toLocaleDateString() + ' ' + post.time.toLocaleTimeString()%></small></p>
     <p><%= post.post %></p>
   </div>
 <% if (index % 3 == 2) { %>

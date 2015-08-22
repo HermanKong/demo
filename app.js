@@ -55,8 +55,8 @@ app.use(function(req, res, next) {
 
   res.locals.error = error.length ? error : null;
   res.locals.success = success.length ? success : null;
-  console.log(success);
-  console.log(error);
+
+
   next();
 });
 
