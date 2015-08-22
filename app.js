@@ -1,12 +1,12 @@
 /**
  * Module dependencies.
  */
-var db = require('./models/db');
-var mongoose = require('mongoose');
 var express = require('express');
 var http = require('http');
-var routes = require('./routes');
-var settings = require('./settings');
+
+var db = require('./models/db');
+var mongoose = require('mongoose');
+
 var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -23,7 +23,9 @@ var routes = require('./routes');
 // Configuration
 app.engine('ejs', engine);
 app.set('views', __dirname + '/views');
-app.set('view options', { layout:'layout.ejs' });
+app.set('view options', {
+  layout: 'layout.ejs'
+});
 app.set('view engine', 'ejs');
 app.use(partials())
 app.use(methodOverride());
@@ -42,31 +44,31 @@ app.use(session({
   saveUninitialized: false,
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
-    ttl: 60
   })
 }))
 
 app.use(function(req, res, next) {
   res.locals.user = req.session.user;
 
-  var err = req.flash('error');
+  var error = req.flash('error');
   var success = req.flash('success');
 
-  res.locals.error = err.length ? err : null;
+  res.locals.error = error.length ? error : null;
   res.locals.success = success.length ? success : null;
-
+  console.log(success);
+  console.log(error);
   next();
 });
 
 
 // Routes
 app.get('/', routes.index);
-app.get('/reg', routes.reg);
-app.post('/reg', routes.doReg);
+app.get('/reg', routes.checkNotLogin, routes.reg);
+app.post('/reg', routes.checkNotLogin, routes.doReg);
 app.get('/login', routes.checkNotLogin, routes.login);
-app.post('/login', routes.doLogin);
-app.post('/post', routes.post);
-app.get('/u/:user', routes.u);
+app.post('/login', routes.checkNotLogin, routes.doLogin);
+app.post('/post', routes.checkLogin, routes.post);
+app.get('/logout', routes.checkLogin, routes.logout);
 
 
 // development only
