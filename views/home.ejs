@@ -1,3 +1,16 @@
-Wellcome <%= user %>!!
-
+<% if (!user) { %>
+  <div class="hero-unit">
+    <center>
+    <h1>Wellcome to Simpleblog</h1>
+    <p>This is a simple blogger.</p>
+    <p>
+      <a class="btn btn-primary btn-large" href="/login">LOGIN</a>
+      <a class="btn btn-large" href="/reg">SIGN UP</a>
+    </p>
+    </center>
+  </div>
+<% } else { %>
+  <%- include say.ejs  %>
+<% } %>
+<%- include posts.ejs  %>
 

@@ -2,14 +2,8 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-    <title><%= title %> - Microblog</title>
+    <title><%= title %> - Simpleblog</title>
     <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-    </style>
     <link href="stylesheets/bootstrap-responsive.css" rel="stylesheet">
   </head>
   <body>
@@ -22,15 +16,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/">Microblog</a>
+          <a class="brand" href="/">Simpleblog</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="/">首頁</a></li>
+              <li class="active"><a href="/">Home</a></li>
               <% if (!user) { %>
-                <li><a href="/login">登入</a></li>
-                <li><a href="/reg">註冊</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/reg">Register</a></li>
               <% } else { %>
-                <li><a href="/logout">登出</a></li>
+                <li><a href="/logout">Logout</a></li>
               <% } %>
             </ul>
           </div>
@@ -52,7 +46,7 @@
       <%- body %>
       <hr />
       <footer>
-        <p><a href="http://www.byvoid.com/" target="_blank">BYVoid</a> 2012</p>
+        <p>@Herman 2015</p>
       </footer>
     </div>
   </body>

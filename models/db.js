@@ -1,4 +1,4 @@
-var mongoose = require( 'mongoose' );
+var mongoose = require( 'mongoose');
 var Schema   = mongoose.Schema;
 
 var User = new Schema({
@@ -7,11 +7,11 @@ var User = new Schema({
 });
 
 var Post = new Schema({
-	username : String,
+	user : String,
 	post : String,
 	time : Date
 })
 
 mongoose.model( 'User', User );
 mongoose.model( 'Post', Post );
-mongoose.connect( 'mongodb://localhost/microblog' );
+mongoose.connect('mongodb://localhost/simpleblog');
