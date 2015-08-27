@@ -8,7 +8,7 @@ exports.index = function(req, res, next) {
     if (err) return next(err);
     posts = posts
     res.render('home', {
-      title: 'Wellcome to Herman\'s Demo',
+      title: 'Welcome to Herman\'s Demo',
       posts: posts
     });
   })
